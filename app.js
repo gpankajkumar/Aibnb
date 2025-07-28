@@ -10,7 +10,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
-import MongoStore from 'connect-mongo'
+// const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -19,12 +19,11 @@ const listingRouter = require("./routers/listings.js");
 const reviewRouter = require("./routers/reviews.js");
 const userRouter = require("./routers/user.js");
 
-// const MONG_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONG_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
-const dbUrl = process.env.ATLESDB_URL;
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(MONG_URL);
   console.log("Connection successful");
 }
 
@@ -40,20 +39,20 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
 
-const store = MongoStore.create({
-  mongoUrl: dbUrl,
-  srypto: {
-    secret: process.env.SECRET,
-  },
-  touchAfter: 24 * 3600, 
-})
+// const store = MongoStore.create({
+//   mongoUrl: dbUrl,
+//   srypto: {
+//     secret: process.env.SECRET,
+//   },
+//   touchAfter: 24 * 3600, 
+// })
 
-store.on("error", () => {
-  console.log("ERROR in MONGO SESSION STORE", err);
-})
+// store.on("error", () => {
+//   console.log("ERROR in MONGO SESSION STORE", err);
+// })
 
 const sessionOptions = {
-  store,
+  // store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
