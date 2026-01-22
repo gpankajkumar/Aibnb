@@ -19,7 +19,7 @@ const listingRouter = require("./routers/listings.js");
 const reviewRouter = require("./routers/reviews.js");
 const userRouter = require("./routers/user.js");
 
-const MONG_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONG_URL = "mongodb+srv://gpankajkumar580_db_user:E4IgyYtpaxDyPTgQ@cluster0.oo9hl7j.mongodb.net/?appName=Cluster0";
 
 
 async function main() {
